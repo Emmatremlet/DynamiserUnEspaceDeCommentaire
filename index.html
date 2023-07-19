@@ -118,6 +118,7 @@
 
     //Fonction qui ajoute les commentaires des utilisateurs sur la page
     function addListValue(event) {
+      //Enlève le rechargement par défaut
       event.preventDefault();
 
       //Récupération de la balise div du message d'erreur
@@ -129,12 +130,10 @@
       //Récupération de la zone de texte des commentaires
       let commentaires = document.getElementById("message");
 
+      //Récupération des div qui englobe la liste de commentaires
       let commentList = document.getElementById("comment-list");
-
       let commentList2 = document.getElementsByClassName("bg-white");
-
       let commentList3 = document.getElementsByClassName("mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6");
-
       let body = document.getElementsByClassName("antialiased font-sans bg-white");
 
 
@@ -150,7 +149,7 @@
       let nomPrenom = document.createElement("h3");
       //Création de l'élèment div
       let newDiv = document.createElement("div");
-      //Création du div avec h3 + comment
+      //Création d'un div qui englobera le titre et le commentaire
       let commentDiv = document.createElement("div");
 
       //Création d'un texte que l'utilisateur aura mis dans la zone de texte des commentaires
@@ -159,26 +158,32 @@
       let firstNameValue = document.createTextNode(firstName.value);
       //Création d'un texte que l'utilisateur aura mis dans la zone de texte Nom
       let lastNameValue = document.createTextNode(lastName.value);
+      //Création d'un espace 
       let espace = document.createTextNode(" ");
 
 
-      // Ajout des prénom et nom dans la balise h3
+      // Ajout des prénom, espace et nom dans la balise h3
       nomPrenom.appendChild(firstNameValue);
       nomPrenom.appendChild(espace);
       nomPrenom.appendChild(lastNameValue);
 
+      //Ajout de l'attribut pour styliser le titre
       nomPrenom.setAttribute("class", "font-medium text-gray-900");
 
       // Ajout du commentaire dans la balise div
       newDiv.appendChild(commentairesValue);
 
+      //Ajout de l'attribut pour styliser le commentaire
       newDiv.setAttribute("class", "prose prose-sm mt-4 max-w-none text-gray-500");
 
+      //On ajoute le titre et le commentaire dans un div
       commentDiv.appendChild(nomPrenom);
       commentDiv.appendChild(newDiv);
 
+      //Ajout de l'attribut pour styliser le div
       commentDiv.setAttribute("class", "flex-1 py-10 border-t border-gray-200");
 
+      //Ajout de la balise contenant le commentaire dans celles contenant la liste de commentaires
       commentList.appendChild(commentDiv);
 
       commentList2.appendChild(commentList);
@@ -188,11 +193,14 @@
       body.appendChild(commentList3);
     }
 
+    //Fonction qui permet de supprimer les valeurs des zones de texte
     function submitValue() {
+      //Récupération des différentes zones de texte
       let firstName = document.getElementById("first-name");
       let lastName = document.getElementById("last-name");
       let comment = document.getElementById("message");
 
+      //On modifie les valeurs des champs de texte pour les rendre vite
       firstName.value = "";
       lastName.value = "";
       comment.value = "";
@@ -200,8 +208,9 @@
 
     //Récupération du bouton envoyer
     let button = document.getElementById("submit");
-    //Ajout de l'attribut qui fera que au clic sur le bouton envoyer la fonction addListValue fonctionne
+    //La fonction addListValue s'activera au clic sur le bouton "Envoyer"
     button.addEventListener("click", addListValue);
+    //La fonction submitValue s'activera au clic sur le bouton "Envoyer"
     button.addEventListener("click", submitValue);
   </script>
 
